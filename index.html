@@ -1,1 +1,116 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            overflow: hidden;
+        }
+
+        .clock-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .time-segment {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 100px;
+            color: #00ff9f;
+            font-size: 4rem;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .time-segment:hover {
+            transform: scale(1.05);
+        }
+
+        .segment-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            width: 100%;
+            color: #4eb8dd;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .date {
+            margin-top: 20px;
+            color: #4eb8dd;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .time-segment {
+                font-size: 2.5rem;
+                padding: 10px;
+                min-width: 60px;
+            }
+            .clock-container {
+                padding: 20px;
+            }
+        }
+</style><div class="clock-container">
+        <div class="clock">
+            <div class="time-segment" id="hours">00
+                <div class="segment-label">Hours</div>
+            </div>
+            <div class="time-segment" id="minutes">00
+                <div class="segment-label">Minutes</div>
+            </div>
+            <div class="time-segment" id="seconds">00
+                <div class="segment-label">Seconds</div>
+            </div>
+        </div>
+        <div class="date" id="date">Loading...</div>
+    </div>
+<script>
+  function updateClock() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+            
+            document.getElementById('date').textContent = 
+                `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+        }
+
+        // Initial call to display clock immediately
+        updateClock();
+        
+        // Update clock every second
+        setInterval(updateClock, 1000);
+</script>
 
