@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parsifier</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="contentFrame"></iframe>
+    
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const sub = urlParams.get('sub');
+        
+        // If sub parameter exists, load the iframe
+        if (sub) {
+            document.getElementById('contentFrame').src = `https://parsaj515.github.io/${sub}.html`;
+        } else {
+            // Show instructions if no sub parameter
+            document.body.innerHTML = `
+                <div style="padding: 20px; font-family: Arial, sans-serif;">
+                    <h2>Parsifier Tool</h2>
+                    <p>Usage: Add <code>?sub=page_name</code> to the URL</p>
+                    <p>Example: <a href="?sub=chat">?sub=chat</a></p>
+                    <p>This will load: https://parsaj515.github.io/chat.html</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
