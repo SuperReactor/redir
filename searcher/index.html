@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search Browser</title>
+    <!-- DOMAIN RESTRICTION - MUST BE FIRST -->
+    <!-- DOMAIN RESTRICTION - PAGE WILL NOT LOAD ON UNAUTHORIZED DOMAINS -->
+<script>
+(function(){
+    var allowedDomain = 'superreactor.github.io';
+    var currentHost = window.location.hostname;
+    
+    // Check if current domain is NOT allowed
+    if (currentHost !== allowedDomain && !currentHost.endsWith('.' + allowedDomain)) {
+        // COMPLETELY STOP PAGE LOADING
+        // Clear entire document before anything renders
+        document.documentElement.innerHTML = '';
+        document.head.innerHTML = '';
+        document.body.innerHTML = '';
+        
+        // Prevent any further execution
+        window.stop();
+        
+        // Show blank page with console message only
+        console.log('ACCESS DENIED: This page only loads on ' + allowedDomain);
+        
+        // Exit immediately
+        return;
+    }
+})();
+</script>
+    
+    <meta data-hozxk="hzvknjcg4x" charset="UTF-8">
+    <meta data-3j94a="3rmk53lnkzz" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-0pooo="1llykab5s99">Goog&#108;e Sea&#114;&#99;h Brow&#115;e&#114;</title>
+    <link data-spdy0="95cjr62x7b9" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link data-g9tpw="xs7rxzo2tah" rel="icon" href="https://www.google.com/favicon.ico" type="image/x-icon">
+    <style data-nx1m8="6tgzlg6aauo">
+        &#42; {
+            m&#97;rgin: 0;
+            &#112;ad&#100;i&#110;g&#58; &#48;;
+            b&#111;x-&#115;iz&#105;ng: bord&#101;&#114;&#45;box;
+            f&#111;&#110;t-fa&#109;ily: &#39;&#83;egoe &#85;I', Ari&#97;l, sans-&#115;e&#114;if;
+        &#125;
+        
+        b&#111;dy {
+            &#98;&#97;ckg&#114;&#111;und-color&#58; &#35;f8&#102;9&#102;a;
+            &#99;o&#108;or&#58; &#35;202124;
+            &#109;i&#110;-height: &#49;&#48;0&#118;h&#59;
+        &#125;
+        
+        &#46;&#98;&#114;o&#119;&#115;e&#114;-c&#111;ntain&#101;r {
+            &#100;isplay: &#102;le&#120;;
+            flex&#45;d&#105;rection: &#99;ol&#117;m&#110;;
+            height: &#49;00&#118;&#104;;
+        &#125;
+        
+        &#47;* He&#97;der *&#47;
+        &#46;&#104;&#101;ad&#101;&#114; &#123;
+            bac&#107;ground-&#99;ol&#111;r&#58; #&#102;ff;
+            paddi&#110;g: 1&#54;&#112;&#120; &#50;&#52;&#112;&#120;&#59;
+            &#98;&#111;&#114;&#100;er-bo&#116;to&#109;: 1px solid &#35;e0e0&#101;0;
+            display&#58; flex&#59;
+            &#97;&#108;&#105;g&#110;-i&#116;ems: &#99;ente&#114;&#59;
+            ju&#115;t&#105;&#102;&#121;-con&#116;ent&#58; sp&#97;&#99;&#101;-&#98;etw&#101;&#101;n;
+            flex-w&#114;a&#112;&#58; w&#114;a&#112;&#59;
+            b&#111;x&#45;sh&#97;&#100;ow&#58; &#48; 1px &#50;px rg&#98;&#97;(0&#44;0,&#48;,0.1);
+        }
+        
+        &#46;l&#111;&#103;o-&#99;&#111;n&#116;&#97;iner {
+            disp&#108;a&#121;: &#102;&#108;&#101;&#120;;
+            align-&#105;t&#101;ms&#58; c&#101;nt&#101;r;
+            g&#97;p: 12px&#59;
+        }
+        
+        .logo {
+            &#100;i&#115;pla&#121;: &#102;le&#120;&#59;
+            alig&#110;-i&#116;ems&#58; cente&#114;;
+            gap&#58; 8&#112;x;
+            text-deco&#114;ation: &#110;&#111;&#110;e;
+        &#125;
+        
+        .lo&#103;o-ico&#110; &#123;
+            &#99;&#111;&#108;or: &#35;428&#53;&#102;4;
+            &#102;o&#110;&#116;-si&#122;e: 2&#52;px;
+        }
+        
+        .log&#111;&#45;tex&#116; {
+            fon&#116;-s&#105;ze&#58; 22p&#120;&#59;
+            font&#45;w&#101;igh&#116;: 500&#59;
+            c&#111;&#108;&#111;r&#58; #5f&#54;&#51;68;
+        }
+        
+        .l&#111;go-t&#101;x&#116; &#115;pan:nt&#104;-&#99;hil&#100;(&#49;) { c&#111;l&#111;r: #4&#50;85&#102;4; }
+        .l&#111;&#103;o-&#116;&#101;xt span:&#110;&#116;h&#45;c&#104;i&#108;d(2) &#123; c&#111;lor: #e&#97;4&#51;35; }
+        .lo&#103;o&#45;&#116;e&#120;&#116; span:n&#116;&#104;-&#99;&#104;ild(3&#41; { &#99;olo&#114;: &#35;f&#98;bc&#48;5; &#125;
+        .&#108;&#111;&#103;&#111;-text &#115;pan:nt&#104;-&#99;hil&#100;&#40;4) &#123; co&#108;or: #4&#50;8&#53;&#102;4; &#125;
+        .log&#111;-text s&#112;an&#58;&#110;&#116;&#104;-child(5) { &#99;o&#108;&#111;r: #34a853; }
+        .&#108;&#111;&#103;o&#45;text span:nth-c&#104;&#105;ld&#40;6) &#123; co&#108;&#111;r: #ea4335&#59; &#125;
+        
+        &#46;&#115;e&#97;rch-c&#111;nta&#105;ner {
+            fle&#120;: &#49;;
+            &#109;ax&#45;wi&#100;t&#104;: 720px;
+            &#109;a&#114;gi&#110;: &#48; 20&#112;x;
+            &#112;osit&#105;on: r&#101;l&#97;tiv&#101;;
+        &#125;
+        
+        .se&#97;r&#99;h&#45;b&#111;x {
+            dis&#112;lay&#58; fl&#101;&#120;;
+            a&#108;ig&#110;&#45;items&#58; ce&#110;t&#101;r;
+            b&#111;r&#100;e&#114;: 1px solid #&#100;fe1e5;
+            border-rad&#105;us: 2&#52;px;
+            pa&#100;d&#105;ng&#58; 0 1&#54;px;
+            b&#97;ckg&#114;&#111;&#117;n&#100;: #fff;
+            t&#114;ansition: b&#111;&#120;&#45;shadow &#48;.&#50;s;
+            he&#105;&#103;&#104;t: 46&#112;&#120;;
+        }
+        
+        .sea&#114;c&#104;-box:&#104;ov&#101;r, .s&#101;ar&#99;h-b&#111;x&#58;fo&#99;&#117;s-wi&#116;hin {
+            bo&#120;&#45;sh&#97;dow&#58; 0 &#49;p&#120; &#54;px &#114;g&#98;a(3&#50;,&#51;3&#44;36,&#48;.28);
+            bo&#114;der&#45;c&#111;lor: rgba(223,&#50;25&#44;2&#50;&#57;,0&#41;;
+        }
+        
+        .searc&#104;-icon &#123;
+            co&#108;or&#58; #9aa0&#97;6;
+            m&#97;&#114;gin-&#114;ight: 12p&#120;&#59;
+        }
+        
+        #s&#101;ar&#99;h-in&#112;u&#116; &#123;
+            &#102;&#108;ex: 1;
+            &#98;&#111;rder&#58; n&#111;ne;
+            &#111;utline: &#110;on&#101;&#59;
+            &#102;ont-s&#105;ze: &#49;6px;
+            b&#97;ckg&#114;&#111;und&#58; &#116;r&#97;&#110;spar&#101;n&#116;;
+            p&#97;dding: &#49;2p&#120; &#48;&#59;
+        &#125;
+        
+        .se&#97;rch&#45;button&#115; &#123;
+            &#100;isp&#108;a&#121;&#58; &#102;&#108;&#101;&#120;;
+            a&#108;ign-&#105;t&#101;&#109;&#115;&#58; c&#101;n&#116;&#101;&#114;&#59;
+            gap: &#56;p&#120;&#59;
+        &#125;
+        
+        .sea&#114;&#99;h-btn {
+            backgrou&#110;&#100;: &#110;&#111;&#110;e&#59;
+            bord&#101;&#114;: &#110;one;
+            colo&#114;: &#35;&#57;aa&#48;a6;
+            &#119;idth: 40px&#59;
+            h&#101;ig&#104;&#116;: 40&#112;x&#59;
+            &#98;&#111;rde&#114;-rad&#105;us: 50&#37;;
+            c&#117;rsor: point&#101;r&#59;
+            d&#105;splay&#58; f&#108;&#101;x&#59;
+            alig&#110;-items&#58; cen&#116;&#101;r&#59;
+            &#106;&#117;&#115;t&#105;f&#121;-c&#111;&#110;t&#101;&#110;&#116;: cen&#116;er;
+            tr&#97;n&#115;i&#116;&#105;o&#110;: &#98;&#97;ckground 0&#46;2s&#59;
+        }
+        
+        .sea&#114;ch-btn:hove&#114; {
+            ba&#99;&#107;ground-&#99;o&#108;or: #&#102;&#48;f0&#102;0&#59;
+        }
+        
+        #sear&#99;h-s&#117;b&#109;it {
+            bac&#107;ground-&#99;olor: &#35;&#102;&#56;f&#57;fa&#59;
+            border: 1px s&#111;&#108;id #f8&#102;9fa;
+            border-r&#97;dius: 4&#112;x;
+            co&#108;or: #&#51;c&#52;043&#59;
+            &#102;on&#116;-s&#105;ze&#58; 14&#112;&#120;;
+            &#112;&#97;d&#100;in&#103;: 9px 20&#112;x&#59;
+            &#109;argin-l&#101;&#102;t: 8p&#120;;
+            &#99;urso&#114;: poi&#110;&#116;er;
+            transit&#105;o&#110;: border-color &#48;.2s&#44; box-&#115;h&#97;dow 0&#46;&#50;&#115;;
+        &#125;
+        
+        #&#115;earc&#104;-s&#117;bmit:hover &#123;
+            b&#111;rde&#114;: 1&#112;x soli&#100; &#35;dadce0&#59;
+            b&#111;x-s&#104;adow: 0 1px 1&#112;&#120; &#114;&#103;&#98;a&#40;0&#44;0&#44;0,0.1)&#59;
+        }
+        
+        &#47;* Sug&#103;es&#116;ions Dropdown */
+        .suggestions&#45;&#100;ro&#112;d&#111;wn {
+            &#112;osi&#116;&#105;o&#110;: abs&#111;l&#117;t&#101;;
+            &#116;o&#112;: 10&#48;%;
+            &#108;&#101;ft&#58; &#48;;
+            rig&#104;t: &#48;;
+            back&#103;rou&#110;d: wh&#105;te;
+            b&#111;rder&#58; 1p&#120; &#115;&#111;lid #d&#102;e1e&#53;;
+            bo&#114;der-ra&#100;&#105;&#117;s: 0 0 2&#52;px 24&#112;&#120;;
+            box-&#115;&#104;adow: &#48; 4&#112;&#120; 6px &#114;g&#98;a(32&#44;33,36,&#48;.28);
+            &#109;ar&#103;&#105;n&#45;top: -1px&#59;
+            z-index: 10&#48;0;
+            di&#115;play: n&#111;ne;
+            m&#97;&#120;-&#104;ei&#103;h&#116;: &#51;0&#48;px;
+            ov&#101;&#114;f&#108;ow-y: aut&#111;;
+        }
+        
+        .sug&#103;&#101;stion-i&#116;&#101;m {
+            p&#97;dd&#105;&#110;g&#58; &#49;&#50;&#112;&#120; 20&#112;&#120;&#59;
+            c&#117;r&#115;or: &#112;oi&#110;t&#101;r&#59;
+            displ&#97;&#121;&#58; fl&#101;x;
+            al&#105;gn-&#105;tems&#58; ce&#110;ter;
+            ga&#112;: &#49;&#50;p&#120;;
+            transi&#116;&#105;&#111;n: b&#97;ck&#103;r&#111;und 0.&#49;&#115;;
+        &#125;
+        
+        .&#115;ugge&#115;&#116;ion&#45;i&#116;&#101;m&#58;hover {
+            &#98;ac&#107;grou&#110;&#100;-co&#108;or: #f&#56;f9&#102;a;
+        &#125;
+        
+        &#46;&#115;&#117;&#103;gestion-icon {
+            color: &#35;9&#97;a0a&#54;;
+            fon&#116;-s&#105;z&#101;: &#49;4&#112;x&#59;
+        }
+        
+        .sugg&#101;sti&#111;&#110;-&#116;ext {
+            fl&#101;x: 1;
+        }
+        
+        .&#115;&#117;g&#103;&#101;st&#105;&#111;n&#45;k&#101;y&#119;&#111;rd &#123;
+            &#99;olo&#114;&#58; #1&#97;0&#100;a&#98;;
+            fon&#116;&#45;&#119;e&#105;gh&#116;: 5&#48;0&#59;
+        }
+        
+        &#47;* Main Cont&#101;nt */
+        &#46;co&#110;tent &#123;
+            flex: 1&#59;
+            &#111;&#118;er&#102;l&#111;w-y&#58; a&#117;&#116;o;
+            &#112;add&#105;&#110;g: 20p&#120;;
+            m&#97;x-width: 12&#48;&#48;px&#59;
+            m&#97;rgi&#110;: &#48; auto&#59;
+            w&#105;&#100;t&#104;: 100%;
+        }
+        
+        /&#42; Sea&#114;c&#104; Res&#117;&#108;t&#115; */
+        .&#114;esults-co&#110;&#116;a&#105;n&#101;r {
+            ma&#114;gi&#110;-t&#111;p&#58; 20px;
+        }
+        
+        .result&#115;-in&#102;&#111; &#123;
+            co&#108;&#111;r&#58; &#35;&#55;07&#53;&#55;a&#59;
+            &#102;o&#110;t-&#115;ize: 1&#52;px;
+            m&#97;rgin-&#98;&#111;tt&#111;m: 25px;
+            &#112;&#97;d&#100;&#105;ng-&#98;ottom: &#49;5&#112;&#120;;
+            &#98;order-b&#111;&#116;tom: 1px s&#111;li&#100; #e&#98;ebeb;
+        &#125;
+        
+        .sea&#114;c&#104;&#45;re&#115;ult &#123;
+            marg&#105;&#110;&#45;b&#111;&#116;&#116;&#111;&#109;&#58; &#51;0&#112;x;
+            ma&#120;&#45;wi&#100;th: 650p&#120;;
+        &#125;
+        
+        &#46;&#114;esu&#108;t&#45;u&#114;&#108; {
+            di&#115;play: f&#108;&#101;x;
+            align-&#105;t&#101;ms&#58; center;
+            gap: &#56;px&#59;
+            c&#111;lor&#58; #&#50;&#48;2&#49;24&#59;
+            &#102;&#111;nt-si&#122;e&#58; &#49;4px&#59;
+            li&#110;&#101;-h&#101;&#105;g&#104;t: 1.3;
+            &#109;ar&#103;in-bo&#116;t&#111;m: 4p&#120;&#59;
+        &#125;
+        
+        .&#102;av&#105;con {
+            &#119;i&#100;th: 1&#54;px&#59;
+            h&#101;&#105;g&#104;t: &#49;6&#112;x;
+            b&#111;rder&#45;&#114;ad&#105;&#117;&#115;: &#50;p&#120;;
+        }
+        
+        .&#114;es&#117;lt-t&#105;tl&#101; {
+            &#99;o&#108;or: #&#49;&#97;0&#100;ab&#59;
+            &#102;ont-s&#105;z&#101;: 20&#112;&#120;&#59;
+            &#102;ont-we&#105;ght: 4&#48;&#48;;
+            line-&#104;e&#105;gh&#116;: 1&#46;3&#59;
+            &#109;&#97;r&#103;in-b&#111;&#116;to&#109;: &#56;px;
+            text&#45;&#100;ecor&#97;&#116;&#105;on: none;
+            &#100;&#105;&#115;&#112;&#108;ay&#58; block&#59;
+        &#125;
+        
+        .&#114;&#101;sult-tit&#108;&#101;:hover {
+            &#116;&#101;xt-&#100;ecora&#116;ion: unde&#114;line;
+        }
+        
+        .&#114;es&#117;l&#116;&#45;s&#110;ippe&#116; {
+            col&#111;&#114;: &#35;&#52;d&#53;15&#54;;
+            &#102;ont-s&#105;ze&#58; &#49;4p&#120;&#59;
+            &#108;in&#101;-h&#101;i&#103;h&#116;: 1.58&#59;
+        }
+        
+        &#47;* R&#101;late&#100; S&#101;arches */
+        .rela&#116;ed&#45;s&#101;&#97;rch&#101;s {
+            margin-&#116;op: 40p&#120;;
+            &#112;a&#100;d&#105;&#110;g-top&#58; 2&#48;&#112;&#120;&#59;
+            b&#111;&#114;der-top: 1&#112;x solid #eb&#101;&#98;e&#98;;
+        }
+        
+        .re&#108;a&#116;&#101;d-ti&#116;&#108;e {
+            &#102;&#111;nt-si&#122;e: &#49;8p&#120;;
+            f&#111;&#110;t-we&#105;&#103;&#104;t: 500;
+            &#109;&#97;r&#103;&#105;n&#45;b&#111;&#116;t&#111;m&#58; 15p&#120;&#59;
+            &#99;olor&#58; &#35;2&#48;2124;
+        }
+        
+        &#46;relat&#101;d&#45;it&#101;ms {
+            di&#115;p&#108;&#97;y: flex&#59;
+            flex-wrap: &#119;rap&#59;
+            g&#97;&#112;&#58; 10&#112;x;
+        &#125;
+        
+        .re&#108;&#97;&#116;ed&#45;&#105;tem {
+            &#98;&#97;&#99;kg&#114;o&#117;nd&#45;col&#111;r&#58; #f1f3&#102;&#52;;
+            border&#58; 1px &#115;ol&#105;d #dadce&#48;;
+            b&#111;&#114;de&#114;-ra&#100;&#105;u&#115;: 1&#56;p&#120;;
+            padding: 8&#112;x &#49;6p&#120;&#59;
+            color: #1a0dab&#59;
+            &#116;ext-deco&#114;ati&#111;n&#58; non&#101;&#59;
+            fo&#110;&#116;&#45;s&#105;z&#101;: 14px;
+            &#116;r&#97;&#110;sit&#105;on: b&#97;ckgroun&#100; 0&#46;2s;
+        &#125;
+        
+        &#46;r&#101;&#108;&#97;ted-item:hov&#101;r {
+            ba&#99;kg&#114;ou&#110;d-colo&#114;: #e8eae&#100;&#59;
+            tex&#116;-d&#101;co&#114;ation&#58; unde&#114;line;
+        &#125;
+        
+        &#47;* Lo&#97;di&#110;&#103; &#42;/
+        .&#108;o&#97;&#100;i&#110;&#103; {
+            d&#105;&#115;pl&#97;&#121;: n&#111;&#110;e;
+            &#116;ext&#45;ali&#103;n&#58; cen&#116;er;
+            pa&#100;d&#105;&#110;&#103;: 60p&#120; 20px&#59;
+        }
+        
+        &#46;&#108;oa&#100;i&#110;&#103;-&#115;&#112;&#105;nner {
+            border: 3&#112;x s&#111;l&#105;d r&#103;&#98;a(0, &#48;, 0, 0.&#49;);
+            &#98;orde&#114;-left&#45;&#99;ol&#111;r: #&#52;2&#56;&#53;f4;
+            b&#111;rder&#45;&#114;a&#100;ius&#58; 50%;
+            w&#105;dth: 50px&#59;
+            h&#101;&#105;ght&#58; 50&#112;x;
+            a&#110;&#105;&#109;&#97;tio&#110;: sp&#105;n 1&#115; linear &#105;nfinit&#101;;
+            &#109;a&#114;gin: &#48; au&#116;o 20px;
+        }
+        
+        &#64;&#107;ey&#102;ram&#101;s &#115;pi&#110; &#123;
+            &#48;% &#123; tr&#97;ns&#102;&#111;&#114;&#109;: ro&#116;a&#116;e&#40;0de&#103;)&#59; }
+            1&#48;&#48;% { tra&#110;sf&#111;rm: &#114;ota&#116;e(&#51;60deg&#41;&#59; }
+        }
+        
+        .loadin&#103;-t&#101;xt &#123;
+            co&#108;or&#58; &#35;5f&#54;368;
+            font-siz&#101;: &#49;6&#112;x&#59;
+        &#125;
+        
+        /* W&#101;&#108;&#99;ome Messa&#103;&#101; */
+        &#46;&#119;&#101;lco&#109;&#101;&#45;message {
+            te&#120;&#116;&#45;&#97;&#108;ign&#58; cente&#114;;
+            &#112;&#97;ddi&#110;&#103;: 6&#48;px &#50;0px;
+            colo&#114;: #5f6368;
+            max&#45;&#119;&#105;dt&#104;: 7&#48;0p&#120;;
+            &#109;&#97;rg&#105;&#110;: &#48; a&#117;t&#111;&#59;
+        }
+        
+        &#46;we&#108;come-ico&#110; {
+            font&#45;size: 64&#112;x;
+            color: #d&#97;&#100;&#99;e&#48;;
+            ma&#114;gin-&#98;&#111;tt&#111;m&#58; &#50;0p&#120;;
+        }
+        
+        .wel&#99;o&#109;e-titl&#101; {
+            f&#111;n&#116;-si&#122;e&#58; 28p&#120;&#59;
+            font-we&#105;&#103;&#104;&#116;&#58; 3&#48;&#48;;
+            margin-botto&#109;&#58; &#49;6px&#59;
+            c&#111;&#108;&#111;r: #&#50;0&#50;124;
+        }
+        
+        .welcom&#101;-&#115;ubtit&#108;e {
+            &#102;on&#116;&#45;si&#122;e: 1&#54;px;
+            margi&#110;-&#98;&#111;&#116;&#116;om: 30px;
+            l&#105;n&#101;&#45;&#104;&#101;ight: &#49;.6;
+        &#125;
+        
+        .q&#117;&#105;ck-sea&#114;c&#104;&#101;s {
+            display&#58; f&#108;&#101;&#120;;
+            &#106;ustif&#121;-con&#116;ent: c&#101;&#110;&#116;er;
+            fle&#120;-&#119;&#114;a&#112;&#58; wrap;
+            gap: 1&#50;px&#59;
+            m&#97;rgi&#110;-to&#112;: 30&#112;x&#59;
+        }
+        
+        .quick-sear&#99;h &#123;
+            &#98;ackg&#114;&#111;u&#110;&#100;-&#99;ol&#111;r&#58; &#35;f8f9fa;
+            &#98;orde&#114;&#58; 1px solid #dadc&#101;0;
+            border-&#114;&#97;di&#117;&#115;&#58; 4px&#59;
+            &#112;a&#100;di&#110;g: 10px 20px;
+            &#99;&#111;l&#111;&#114;: #&#49;&#97;0da&#98;;
+            text&#45;de&#99;o&#114;a&#116;i&#111;n: &#110;one;
+            &#116;ransi&#116;&#105;o&#110;&#58; backgrou&#110;d 0&#46;&#50;s&#59;
+        }
+        
+        .quic&#107;-se&#97;&#114;ch:h&#111;ver {
+            back&#103;rou&#110;&#100;&#45;&#99;o&#108;o&#114;&#58; #e&#56;&#101;ae&#100;;
+        &#125;
+        
+        &#47;* Foote&#114; */
+        .&#102;&#111;ote&#114; {
+            backg&#114;oun&#100;&#58; #f2f2f2;
+            paddi&#110;g: 1&#53;px &#51;0px&#59;
+            &#98;&#111;&#114;de&#114;&#45;&#116;o&#112;: 1&#112;x soli&#100; #d&#97;&#100;ce0;
+            &#99;olor: #7&#48;7&#53;&#55;a;
+            font-si&#122;&#101;: 1&#52;px;
+        }
+        
+        .foo&#116;er-l&#111;c&#97;t&#105;on {
+            p&#97;d&#100;ing&#58; &#49;5px 0;
+            b&#111;rd&#101;&#114;&#45;&#98;o&#116;to&#109;: 1&#112;x so&#108;id #d&#97;dce0;
+        }
+        
+        &#46;&#102;oot&#101;&#114;&#45;&#108;&#105;nk&#115; {
+            displa&#121;: &#102;lex;
+            f&#108;ex-wra&#112;: wra&#112;&#59;
+            j&#117;&#115;&#116;ify&#45;c&#111;nt&#101;n&#116;&#58; space-b&#101;tween;
+            &#112;ad&#100;&#105;ng: 1&#53;p&#120; 0&#59;
+        }
+        
+        .f&#111;&#111;&#116;&#101;r&#45;lin&#107;s &#97; &#123;
+            col&#111;r: #707&#53;7&#97;&#59;
+            text&#45;decorat&#105;&#111;n: no&#110;e;
+            margi&#110;-r&#105;ght&#58; 27&#112;x;
+            margin&#45;&#98;ot&#116;om: 1&#48;px;
+        }
+        
+        .f&#111;ot&#101;r-lin&#107;&#115; &#97;:&#104;o&#118;er {
+            text-de&#99;&#111;rati&#111;&#110;&#58; &#117;nde&#114;li&#110;e;
+        &#125;
+        
+        /* Responsiv&#101; *&#47;
+        @m&#101;dia &#40;ma&#120;-&#119;idth: &#55;&#54;8p&#120;) {
+            .h&#101;a&#100;er {
+                padd&#105;ng&#58; 12px 16px;
+            }
+            
+            .logo-co&#110;tai&#110;&#101;r {
+                wid&#116;h: 100&#37;;
+                jus&#116;ify-con&#116;en&#116;: center;
+                m&#97;&#114;g&#105;n-bottom: 12px;
+            }
+            
+            .sear&#99;h&#45;&#99;on&#116;ai&#110;&#101;r {
+                &#109;argi&#110;: 0;
+                m&#105;&#110;-&#119;&#105;d&#116;h&#58; &#49;00&#37;;
+            }
+            
+            .content &#123;
+                paddin&#103;&#58; &#49;5p&#120;;
+            &#125;
+            
+            .sear&#99;h-&#114;es&#117;&#108;t &#123;
+                &#109;ax&#45;&#119;&#105;&#100;th: 1&#48;&#48;%;
+            }
+            
+            .&#119;e&#108;c&#111;me&#45;mess&#97;&#103;e {
+                pad&#100;ing: 40px &#49;5px&#59;
+            }
+        }
+        
+        @media (m&#97;&#120;-&#119;&#105;dt&#104;: 480px) {
+            .lo&#103;&#111;-t&#101;xt &#123;
+                &#102;o&#110;t-s&#105;ze&#58; 18px;
+            }
+            
+            .w&#101;&#108;com&#101;&#45;t&#105;&#116;le {
+                f&#111;n&#116;-s&#105;ze: 24px;
+            }
+            
+            .quick-&#115;&#101;ar&#99;he&#115; &#123;
+                &#102;le&#120;-d&#105;r&#101;cti&#111;&#110;&#58; col&#117;&#109;n;
+                alig&#110;-items&#58; c&#101;&#110;ter&#59;
+            }
+        }
+    </style>
+
+    
+<script>
+document.addEventListener('contextmenu',function(e){e.preventDefault();return false;});
+document.addEventListener('keydown',function(e){if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&e.key==='I')||(e.ctrlKey&&e.shiftKey&&e.key==='J')||(e.ctrlKey&&e.key==='u')){e.preventDefault();return false;}});
+</script>
+
+<script>
+var allowedOrigins=['https://parsaj515.github.io'];
+var originalFetch=window.fetch;
+window.fetch=function(...args){var url=args[0];if(typeof url==='string'&&!allowedOrigins.some(origin=>url.startsWith(origin))){return Promise.reject(new Error('Cross-origin requests blocked'));}return originalFetch.apply(this,args);};
+</script>
+
+<script>
+if(window!==window.top){window.top.location=window.location;}
+</script>
+
+    <script>
+        // DOM Elements
+        const searchInput = document.getElementById('search-input');
+        const searchBox = document.getElementById('search-box');
+        const searchSubmit = document.getElementById('search-submit');
+        const clearSearchBtn = document.getElementById('clear-search-btn');
+        const voiceSearchBtn = document.getElementById('voice-search-btn');
+        const suggestionsDropdown = document.getElementById('suggestions-dropdown');
+        const homeLink = document.getElementById('home-link');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const loading = document.getElementById('loading');
+        const resultsContainer = document.getElementById('results-container');
+        const searchResults = document.getElementById('search-results');
+        const resultsInfo = document.getElementById('results-info');
+        const resultsCount = document.getElementById('results-count');
+        const resultsTime = document.getElementById('results-time');
+        const relatedSearches = document.getElementById('related-searches');
+        const relatedItems = document.getElementById('related-items');
+        
+        // Variables
+        let currentQuery = '';
+        let searchTimeout = null;
+        let userLanguage = navigator.language || 'en-US';
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Extract language code (e.g., 'en-US' -> 'en')
+            userLanguage = userLanguage.split('-')[0];
+            
+            // Event Listeners
+            searchInput.addEventListener('input', handleInput);
+            searchInput.addEventListener('focus', handleFocus);
+            searchInput.addEventListener('keydown', handleKeyDown);
+            
+            searchSubmit.addEventListener('click', performSearch);
+            
+            clearSearchBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                searchInput.focus();
+                suggestionsDropdown.style.display = 'none';
+            });
+            
+            voiceSearchBtn.addEventListener('click', function() {
+                alert('Voice search requires browser permissions. This is a demo feature.');
+            });
+            
+            homeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                resetToHome();
+            });
+            
+            // Quick search buttons
+            document.querySelectorAll('.quick-search').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const query = this.getAttribute('data-query');
+                    searchInput.value = query;
+                    performSearch();
+                });
+            });
+            
+            // Close suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchBox.contains(e.target) && !suggestionsDropdown.contains(e.target)) {
+                    suggestionsDropdown.style.display = 'none';
+                }
+            });
+        });
+        
+        // Handle input for suggestions
+        function handleInput() {
+            const query = searchInput.value.trim();
+            
+            // Clear previous timeout
+            if (searchTimeout) {
+                clearTimeout(searchTimeout);
+            }
+            
+            // Hide suggestions if query is empty
+            if (!query) {
+                suggestionsDropdown.style.display = 'none';
+                return;
+            }
+            
+            // Debounce the API call
+            searchTimeout = setTimeout(() => {
+                fetchSuggestions(query);
+            }, 300);
+        }
+        
+        // Handle focus
+        function handleFocus() {
+            const query = searchInput.value.trim();
+            if (query && suggestionsDropdown.innerHTML) {
+                suggestionsDropdown.style.display = 'block';
+            }
+        }
+        
+        // Handle keydown events
+        function handleKeyDown(e) {
+            // Escape key - close suggestions
+            if (e.key === 'Escape') {
+                suggestionsDropdown.style.display = 'none';
+            }
+            
+            // Arrow keys for navigation
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                navigateSuggestions(e.key === 'ArrowDown' ? 1 : -1);
+            }
+            
+            // Enter key to select suggestion
+            if (e.key === 'Enter') {
+                const activeSuggestion = suggestionsDropdown.querySelector('.suggestion-item.active');
+                if (activeSuggestion && suggestionsDropdown.style.display === 'block') {
+                    e.preventDefault();
+                    activeSuggestion.click();
+                }
+            }
+        }
+        
+        // Navigate suggestions with arrow keys
+        function navigateSuggestions(direction) {
+            const suggestions = suggestionsDropdown.querySelectorAll('.suggestion-item');
+            if (suggestions.length === 0) return;
+            
+            let activeIndex = -1;
+            suggestions.forEach((suggestion, index) => {
+                if (suggestion.classList.contains('active')) {
+                    activeIndex = index;
+                    suggestion.classList.remove('active');
+                }
+            });
+            
+            let newIndex = activeIndex + direction;
+            if (newIndex < 0) newIndex = suggestions.length - 1;
+            if (newIndex >= suggestions.length) newIndex = 0;
+            
+            suggestions[newIndex].classList.add('active');
+            suggestions[newIndex].scrollIntoView({ block: 'nearest' });
+            
+            // Update search input with selected suggestion
+            const suggestionText = suggestions[newIndex].querySelector('.suggestion-text').textContent;
+            searchInput.value = suggestionText;
+        }
+        
+        // Fetch suggestions from API
+        async function fetchSuggestions(query) {
+            try {
+                // Use the provided API endpoint
+                const apiUrl = `https://api.bonjourr.fr/suggestions?q=${encodeURIComponent(query)}&with=google&l=${userLanguage}`;
+                
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                displaySuggestions(data, query);
+            } catch (error) {
+                console.error('Error fetching suggestions:', error);
+                // Fallback to local suggestions if API fails
+                displayLocalSuggestions(query);
+            }
+        }
+        
+        // Display suggestions from API
+        function displaySuggestions(data, query) {
+            suggestionsDropdown.innerHTML = '';
+            
+            if (!data || !data.suggestions || data.suggestions.length === 0) {
+                // Fallback to local suggestions
+                displayLocalSuggestions(query);
+                return;
+            }
+            
+            // Add each suggestion
+            data.suggestions.forEach(suggestion => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.innerHTML = `
+                    <i class="fas fa-search suggestion-icon"></i>
+                    <div class="suggestion-text">
+                        <span class="suggestion-keyword">${highlightQuery(suggestion, query)}</span>
+                    </div>
+                `;
+                
+                suggestionItem.addEventListener('click', function() {
+                    searchInput.value = suggestion;
+                    performSearch();
+                });
+                
+                suggestionsDropdown.appendChild(suggestionItem);
+            });
+            
+            suggestionsDropdown.style.display = 'block';
+        }
+        
+        // Display local suggestions as fallback
+        function displayLocalSuggestions(query) {
+            suggestionsDropdown.innerHTML = '';
+            
+            // Common search suggestions based on query
+            const commonSuggestions = [
+                `${query} definition`,
+                `${query} tutorial`,
+                `${query} 2023`,
+                `${query} for beginners`,
+                `best ${query}`,
+                `how to ${query}`,
+                `${query} near me`,
+                `${query} online`
+            ];
+            
+            // Add each suggestion
+            commonSuggestions.forEach(suggestion => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.innerHTML = `
+                    <i class="fas fa-search suggestion-icon"></i>
+                    <div class="suggestion-text">
+                        <span class="suggestion-keyword">${highlightQuery(suggestion, query)}</span>
+                    </div>
+                `;
+                
+                suggestionItem.addEventListener('click', function() {
+                    searchInput.value = suggestion;
+                    performSearch();
+                });
+                
+                suggestionsDropdown.appendChild(suggestionItem);
+            });
+            
+            suggestionsDropdown.style.display = 'block';
+        }
+        
+        // Highlight query in suggestion
+        function highlightQuery(suggestion, query) {
+            if (!query) return suggestion;
+            
+            const regex = new RegExp(`(${query})`, 'gi');
+            return suggestion.replace(regex, '<strong>$1</strong>');
+        }
+        
+        // Perform search
+        async function performSearch() {
+            const query = searchInput.value.trim();
+            
+            if (!query) {
+                alert('Please enter a search term');
+                return;
+            }
+            
+            currentQuery = query;
+            
+            // Hide suggestions
+            suggestionsDropdown.style.display = 'none';
+            
+            // Show loading, hide welcome message
+            loading.style.display = 'block';
+            welcomeMessage.style.display = 'none';
+            resultsContainer.style.display = 'none';
+            relatedSearches.style.display = 'none';
+            searchResults.innerHTML = '';
+            
+            try {
+                // Get suggestions first (they contain rich data)
+                const suggestionsUrl = `https://api.bonjourr.fr/suggestions?q=${encodeURIComponent(query)}&with=google&l=${userLanguage}`;
+                const response = await fetch(suggestionsUrl);
+                const data = await response.json();
+                
+                // Simulate search delay
+                setTimeout(() => {
+                    displaySearchResults(data, query);
+                }, 800);
+                
+            } catch (error) {
+                console.error('Search error:', error);
+                // Fallback to simulated results
+                setTimeout(() => {
+                    displaySimulatedResults(query);
+                }, 800);
+            }
+        }
+        
+        // Display search results
+        function displaySearchResults(data, query) {
+            loading.style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            // Update results info
+            const resultCount = Math.floor(Math.random() * 10000000) + 1000000;
+            resultsCount.textContent = resultCount.toLocaleString();
+            resultsTime.textContent = (Math.random() * 0.5 + 0.2).toFixed(2);
+            
+            let resultsHTML = '';
+            
+            // Create results based on query and suggestions
+            if (data && data.suggestions && data.suggestions.length > 0) {
+                // Use suggestions to generate results
+                data.suggestions.slice(0, 8).forEach((suggestion, index) => {
+                    const domain = getDomainFromQuery(suggestion);
+                    const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=16`;
+                    
+                    resultsHTML += `
+                        <div class="search-result">
+                            <div class="result-url">
+                                <img src="${faviconUrl}" class="favicon" alt="favicon">
+                                <span>${domain}</span>
+                            </div>
+                            <a href="https://www.google.com/search?q=${encodeURIComponent(suggestion)}" class="result-title" target="_blank">${suggestion}</a>
+                            <div class="result-snippet">${generateSnippet(suggestion, query)}</div>
+                        </div>
+                    `;
+                });
+            } else {
+                // Fallback to simulated results
+                resultsHTML = generateSimulatedResults(query);
+            }
+            
+            searchResults.innerHTML = resultsHTML;
+            
+            // Show related searches if we have suggestions
+            if (data && data.suggestions && data.suggestions.length > 0) {
+                displayRelatedSearches(data.suggestions.slice(0, 6));
+            }
+        }
+        
+        // Display simulated results (fallback)
+        function displaySimulatedResults(query) {
+            loading.style.display = 'none';
+            resultsContainer.style.display = 'block';
+            
+            // Update results info
+            const resultCount = Math.floor(Math.random() * 10000000) + 1000000;
+            resultsCount.textContent = resultCount.toLocaleString();
+            resultsTime.textContent = (Math.random() * 0.5 + 0.2).toFixed(2);
+            
+            // Generate simulated results
+            searchResults.innerHTML = generateSimulatedResults(query);
+            
+            // Generate related searches
+            displayRelatedSearches(generateRelatedSearches(query));
+        }
+        
+        // Generate simulated results
+        function generateSimulatedResults(query) {
+            const domains = [
+                'wikipedia.org', 'youtube.com', 'amazon.com', 'twitter.com', 
+                'reddit.com', 'github.com', 'stackoverflow.com', 'medium.com',
+                'cnn.com', 'nytimes.com', 'bbc.com', 'forbes.com'
+            ];
+            
+            let resultsHTML = '';
+            
+            for (let i = 0; i < 8; i++) {
+                const domain = domains[Math.floor(Math.random() * domains.length)];
+                const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=16`;
+                const title = generateTitle(query, i);
+                
+                resultsHTML += `
+                    <div class="search-result">
+                        <div class="result-url">
+                            <img src="${faviconUrl}" class="favicon" alt="favicon">
+                            <span>${domain}</span>
+                        </div>
+                        <a href="https://www.google.com/search?q=${encodeURIComponent(title)}" class="result-title" target="_blank">${title}</a>
+                        <div class="result-snippet">${generateSnippet(query, i)}</div>
+                    </div>
+                `;
+            }
+            
+            return resultsHTML;
+        }
+        
+        // Display related searches
+        function displayRelatedSearches(suggestions) {
+            if (!suggestions || suggestions.length === 0) return;
+            
+            relatedItems.innerHTML = '';
+            
+            suggestions.forEach(suggestion => {
+                if (suggestion === currentQuery) return;
+                
+                const relatedItem = document.createElement('a');
+                relatedItem.href = '#';
+                relatedItem.className = 'related-item';
+                relatedItem.textContent = suggestion;
+                
+                relatedItem.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    searchInput.value = suggestion;
+                    performSearch();
+                });
+                
+                relatedItems.appendChild(relatedItem);
+            });
+            
+            relatedSearches.style.display = 'block';
+        }
+        
+        // Generate related searches
+        function generateRelatedSearches(query) {
+            return [
+                `${query} definition`,
+                `${query} tutorial`,
+                `${query} examples`,
+                `${query} for beginners`,
+                `how to use ${query}`,
+                `best ${query} tools`,
+                `${query} vs alternatives`,
+                `${query} pros and cons`
+            ];
+        }
+        
+        // Generate title based on query
+        function generateTitle(query, index) {
+            const prefixes = [
+                'How to ', 'Best ', 'Top 10 ', 'What is ', 'Why ', 
+                'The complete guide to ', 'Understanding ', 'Learn '
+            ];
+            
+            const suffixes = [
+                ' - Tutorial', ' - Examples', ' - Guide', ' - 2023',
+                ' for beginners', ' explained', ' made easy'
+            ];
+            
+            const prefix = prefixes[index % prefixes.length];
+            const suffix = suffixes[index % suffixes.length];
+            
+            return `${prefix}${query}${suffix}`;
+        }
+        
+        // Generate snippet based on query
+        function generateSnippet(query, index) {
+            const snippets = [
+                `Learn everything about ${query} with our comprehensive guide. ${query} is one of the most popular topics in technology today.`,
+                `Discover the best practices for ${query}. This tutorial covers everything from basics to advanced techniques.`,
+                `${query} has become increasingly important in recent years. Find out why and how you can get started.`,
+                `Looking for information about ${query}? You've come to the right place. We cover all aspects of ${query}.`,
+                `This complete guide to ${query} will help you understand the key concepts and applications.`,
+                `Find examples, tutorials, and resources for ${query}. Perfect for beginners and experts alike.`,
+                `${query} is changing the way we think about technology. Learn how to leverage it for your projects.`,
+                `Get started with ${query} today. Our step-by-step guide makes it easy to learn the fundamentals.`
+            ];
+            
+            return snippets[index % snippets.length];
+        }
+        
+        // Get domain from query
+        function getDomainFromQuery(query) {
+            // Simple domain extraction based on common patterns
+            if (query.toLowerCase().includes('wikipedia')) return 'wikipedia.org';
+            if (query.toLowerCase().includes('youtube') || query.toLowerCase().includes('video')) return 'youtube.com';
+            if (query.toLowerCase().includes('amazon') || query.toLowerCase().includes('shop')) return 'amazon.com';
+            if (query.toLowerCase().includes('twitter') || query.toLowerCase().includes('tweet')) return 'twitter.com';
+            if (query.toLowerCase().includes('github') || query.toLowerCase().includes('code')) return 'github.com';
+            if (query.toLowerCase().includes('stackoverflow') || query.toLowerCase().includes('programming')) return 'stackoverflow.com';
+            
+            // Default to a common domain
+            const domains = ['wikipedia.org', 'youtube.com', 'amazon.com', 'twitter.com', 'github.com'];
+            return domains[Math.floor(Math.random() * domains.length)];
+        }
+        
+        // Reset to home
+        function resetToHome() {
+            searchInput.value = '';
+            welcomeMessage.style.display = 'block';
+            resultsContainer.style.display = 'none';
+            relatedSearches.style.display = 'none';
+            suggestionsDropdown.style.display = 'none';
+            searchInput.focus();
+        }
+        
+        // Add a global function for easy access
+        window.performSearch = performSearch;
+    </script>
+</head>
+<body>
+    
+    <div data-zds2t="ggzej5v8d6" class="browser-container">
+        <!-- Header -->
+        <header data-uwzok="c4cutffd5u" class="header">
+            <div data-xll4v="h9a9b110po" class="logo-container">
+                <a data-587yj="xbzdkxarhr9" href="#" class="logo" id="home-link">
+                    <i data-k60am="fv93ili070m" class="fab fa-google logo-icon"></i>
+                    <div data-vskrm="rqodf0me7ag" class="logo-text">
+                        <span data-y66gn="7il1xn4nqh8">G</span><span data-akyvy="3ueusblyuk5">o</span><span data-1xs6v="42bry6yp2xw">o</span><span data-b5x1w="xaahkchqpqj">&#103;</span><span data-m8cae="o3upjwauhzs">l</span><span data-uq950="1yzvfhqh00h">&#101;</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div data-hqrih="tvjy6tt7tor" class="search-container">
+                <div data-mke3a="p81gedoc09q" class="search-box" id="search-box">
+                    <i data-psfjr="mv2fm7s9lg7" class="fas fa-search search-icon"></i>
+                    <input data-mjc83="nzsuc45z8d" type="text" id="search-input" placeholder="Search Google or type a URL" autocomplete="off" autofocus>
+                    <div data-vdew3="yl8ni1w2tw" class="search-buttons">
+                        <button data-c7nra="razjf0rflfg" class="search-btn" id="clear-search-btn" title="Clear">
+                            <i data-qjm11="7xq1e5zi7gh" class="fas fa-times"></i>
+                        </button>
+                        <button data-j109h="z4bxnaizu8j" class="search-btn" id="voice-search-btn" title="Voice search">
+                            <i data-qm7j8="ygv80e9xjr" class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Suggestions Dropdown -->
+                <div data-7c3b0="84c9gi3qavw" class="suggestions-dropdown" id="suggestions-dropdown"></div>
+            </div>
+            
+            <button data-aqij0="zvv12cop0b" id="search-submit">G&#111;og&#108;e Search</button>
+        </header>
+        
+        <!-- Main Content -->
+        <main data-wbacn="g23qgn4411" class="content">
+            <!-- Welcome Message -->
+            <div data-8pejl="x6yvqzwluhj" class="welcome-message" id="welcome-message">
+                <div data-ezuy5="juznw75mo2" class="welcome-icon">
+                    <i data-5l4so="0hhy3diwvv74" class="fab fa-google"></i>
+                </div>
+                <h1 data-g7pvj="9xterkiehlc" class="welcome-title">&#71;o&#111;&#103;le Search</h1>
+                <p data-scrcv="fvx3r7do73a" class="welcome-subtitle">&#83;earch &#116;&#104;e &#119;eb u&#115;&#105;n&#103; Go&#111;g&#108;e's &#115;ear&#99;&#104; &#115;&#117;gge&#115;tion&#115; A&#80;I. Ty&#112;&#101; you&#114; que&#114;y in t&#104;e &#115;&#101;&#97;r&#99;h b&#111;x abo&#118;e t&#111; get &#114;&#101;al-t&#105;&#109;e &#115;uggestions &#97;nd &#115;ea&#114;&#99;h result&#115;.</p>
+                
+                <div data-198ro="mis6twgqh38" class="quick-searches">
+                    <a data-81cfs="p06vb2frl5h" href="#" class="quick-search" data-query="weather today">We&#97;t&#104;&#101;r &#116;o&#100;a&#121;</a>
+                    <a data-skn5d="ls9gj447qb" href="#" class="quick-search" data-query="latest news">&#76;at&#101;&#115;t &#110;ew&#115;</a>
+                    <a data-t0bhw="dmtc0jy3h6" href="#" class="quick-search" data-query="python programming">P&#121;&#116;&#104;on program&#109;&#105;ng</a>
+                    <a data-u82ri="rc4qwl2pyj8" href="#" class="quick-search" data-query="how to learn coding">Ho&#119; &#116;o lear&#110; c&#111;di&#110;g</a>
+                </div>
+            </div>
+            
+            <!-- Loading -->
+            <div data-99v6u="odinbqsh2we" class="loading" id="loading">
+                <div data-7ixou="d8qvlb3gf07" class="loading-spinner"></div>
+                <div data-ghnkw="ujbn2w8si9" class="loading-text">Search&#105;n&#103; the w&#101;b...</div>
+            </div>
+            
+            <!-- Results Container -->
+            <div data-4b38f="xqrlhl57pe9" class="results-container" id="results-container" style="display: none;">
+                <div data-v3dfz="u9ts9thh36l" class="results-info" id="results-info">
+                    A&#98;o&#117;t <span data-metsq="vp33mvfs6c" id="results-count">0</span> r&#101;&#115;&#117;&#108;&#116;&#115; &#40;<span data-kanru="zhiavvzu84" id="results-time">0</span> seco&#110;&#100;&#115;)
+                </div>
+                
+                <div data-dlfss="uag1rd26bue" id="search-results"></div>
+                
+                <div data-m9ee6="8bxeopdrgj9" class="related-searches" id="related-searches" style="display: none;">
+                    <h3 data-xkdo0="fdu6mo2lktq" class="related-title">&#82;&#101;l&#97;t&#101;&#100; sea&#114;c&#104;&#101;&#115;</h3>
+                    <div data-udy88="htaao83ytv" class="related-items" id="related-items"></div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer data-zys5p="osk4mpylds" class="footer">
+            <div data-62cxh="qs0glzt5am" class="footer-location">Unite&#100; States</div>
+            <div data-sgk3f="lgkyupeb9ad" class="footer-links">
+                <div data-n4q2k="gwjp9yx9mx">
+                    <a data-pj3bc="j2g8wea0d1" href="#">&#65;bout</a>
+                    <a data-mpn16="fczt1i0lw3u" href="#">A&#100;&#118;&#101;&#114;tisin&#103;</a>
+                    <a data-8adft="pa7p3wihzw9" href="#">Business</a>
+                    <a data-dn2f2="fbip1fzlbgp" href="#">How &#83;e&#97;&#114;ch wor&#107;&#115;</a>
+                </div>
+                <div data-45csh="54c2i2rrt2l">
+                    <a data-nl8h7="07ta98czzpj5" href="#">P&#114;iva&#99;y</a>
+                    <a data-qb587="qq3csjavdx" href="#">Terms</a>
+                    <a data-4gjc4="dzg6i17ulzw" href="#">Set&#116;ings</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    
+
+</body>
+</html>
