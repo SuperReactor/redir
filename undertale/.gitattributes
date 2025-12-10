@@ -1,0 +1,2 @@
+*.unx filter=lfs diff=lfs merge=lfs -text
+game.unx filter=lfs diff=lfs merge=lfs -text
