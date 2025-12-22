@@ -12,6 +12,7 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const query = params.get('q');
+        const apiKey = 'sk-c3fe671c9a0e4bffb20933a444e85d8c';
         const contentDiv = document.getElementById('content');
 
         if (!query) {
@@ -19,26 +20,35 @@
         } else {
             contentDiv.textContent = 'Generating response...';
             
-            fetch('https://api.anthropic.com/v1/messages', {
+            fetch('https://api.deepseek.com/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({
-                    model: 'claude-sonnet-4-20250514',
-                    max_tokens: 1000,
+                    model: 'deepseek-chat',
                     messages: [
-                        { role: 'user', content: query }
-                    ]
+                        { 
+                            role: 'user', 
+                            content: query 
+                        }
+                    ],
+                    max_tokens: 1000
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
-                const text = data.content.map(item => item.type === 'text' ? item.text : '').join('\n');
+                const text = data.choices[0].message.content;
                 contentDiv.innerHTML = marked.parse(text);
             })
             .catch(error => {
-                contentDiv.textContent = 'Error: ' + error.message;
+                contentDiv.innerHTML = `<p>Error: ${error.message}</p>`;
             });
         }
     </script>
