@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Response</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+</head>
+<body>
+    <div id="content">Loading...</div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const query = params.get('q');
+        const contentDiv = document.getElementById('content');
+
+        if (!query) {
+            contentDiv.textContent = 'No query provided. Add ?q=your_question to the URL.';
+        } else {
+            contentDiv.textContent = 'Generating response...';
+            
+            fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    model: 'claude-sonnet-4-20250514',
+                    max_tokens: 1000,
+                    messages: [
+                        { role: 'user', content: query }
+                    ]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const text = data.content.map(item => item.type === 'text' ? item.text : '').join('\n');
+                contentDiv.innerHTML = marked.parse(text);
+            })
+            .catch(error => {
+                contentDiv.textContent = 'Error: ' + error.message;
+            });
+        }
+    </script>
+</body>
+</html>
