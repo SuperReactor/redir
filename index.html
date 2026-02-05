@@ -1,3 +1,139 @@
-<script>
-  window.location.href = "https://github.com/SuperReactor/SuperReactor.github.io/";
-</script>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <base href="https://cdn.jsdelivr.net/gh/technonyte00/deltarune@main/">
+    <meta charset="UTF-8">
+    <title>Deltarune</title>
+    <style>
+        body {
+            font-family: "Ubuntu Mono", sans-serif;
+        }
+
+        img {
+            image-rendering: pixelated;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+
+        <div class="menu">
+            <a href="javascript:loadChapter(1)" class="row">
+                <span class="chapter">Chapter 1</span>
+                -
+                <span class="title">The Beginning</span>
+                <img src="icons/1.png">
+            </a>
+            <br>
+            <a href="javascript:loadChapter(2)" class="row">
+                <span class="chapter">Chapter 2</span>
+                -
+                <span class="title">A Cyber's World</span>
+                <img src="icons/2.png">
+            </a>
+            <br>
+            <a href="javascript:loadChapter(3)" class="row">
+                <span class="chapter">Chapter 3</span> -
+                <span class="title">Late Night</span>
+                <img src="icons/3.png">
+            </a>
+            <br>
+            <a href="javascript:loadChapter(4)" class="row">
+                <span class="chapter">Chapter 4</span>
+                -
+                <span class="title">Prophecy</span>
+                <img src="icons/4.png">
+            </a>
+        </div>
+        <script>
+            function loadChapter(chapter) {
+      fetch(`https://cdn.jsdelivr.net/gh/1e295a49108e716ce8ab7eba0c8dca7d/9326265e4f1b14345a3bdab6f8ffad0e2e7ab3fda920c5f0f095f77359af00aeae22591c5bc4914c84c13d99eb62091d7ce7/drweb/chapter${chapter}/index.html`).then(res => res.text()).then(html => {
+        gamestarted = true;
+        document.documentElement.innerHTML = html;
+        document.documentElement.querySelectorAll('script').forEach(oldScript => {
+          const newScript = document.createElement('script');
+          if (oldScript.src) {
+            newScript.src = oldScript.src;
+          } else {
+            newScript.textContent = oldScript.textContent;
+          }
+          document.body.appendChild(newScript);
+        });
+      });
+    }
+
+    const hoverSound = document.getElementById('hover-sound');
+
+    const menumoveaudio = new Audio('audios/snd_menumove.mp3');
+    const menuselectaudio = new Audio('audios/snd_select.mp3');
+    document.querySelectorAll('.row').forEach(row => {
+      row.addEventListener('mouseenter', () => {
+        if (!gamestarted) {
+          menumoveaudio.play();
+          if (selectedChapter) {
+            document.querySelectorAll('.row')[selectedChapter].classList.remove("selected");
+          }
+        }
+      });
+      row.addEventListener('click', () => {
+        if (!gamestarted) {
+          menuselectaudio.play();
+        }
+      });
+    });
+
+    let selectedChapter = null;
+    document.addEventListener('keydown', function(event) {
+      if (!gamestarted) {
+      if (event.key === 'ArrowUp') {
+        if (selectedChapter === null) {
+          selectedChapter = 0;
+          document.querySelectorAll('.row')[0].classList.add("selected");
+          menumoveaudio.play();
+        } else {
+          document.querySelectorAll('.row')[selectedChapter].classList.remove("selected");
+          selectedChapter--;
+          if (selectedChapter < 0) {
+            selectedChapter = document.querySelectorAll('.row').length - 1;
+          }
+          document.querySelectorAll('.row')[selectedChapter].classList.add("selected");
+          menumoveaudio.play();
+        }
+      } else if (event.key === 'ArrowDown') {
+        if (selectedChapter === null) {
+          selectedChapter = 0;
+          document.querySelectorAll('.row')[0].classList.add("selected");
+          menumoveaudio.play();
+        } else {
+          if (selectedChapter+1 >= document.querySelectorAll('.row').length) {
+            document.querySelectorAll('.row')[selectedChapter].classList.remove("selected");
+            selectedChapter = 0;
+            document.querySelectorAll('.row')[0].classList.add("selected");
+            menumoveaudio.play();
+          } else {
+            document.querySelectorAll('.row')[selectedChapter].classList.remove("selected");
+            selectedChapter++;
+            document.querySelectorAll('.row')[selectedChapter].classList.add("selected");
+            menumoveaudio.play();
+          }
+        }
+      } else if (event.key === 'Enter') {
+        if (selectedChapter !== null) {
+          window.location.href = document.querySelectorAll('.row')[selectedChapter].href;
+          menuselectaudio.play();
+        } 
+      }
+      }
+    });
+        </script>
+    </center>
+</body>
+
+
+</html>
