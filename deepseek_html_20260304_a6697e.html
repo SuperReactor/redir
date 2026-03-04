@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Auto-Downloader</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px;
+        }
+        
+        h1 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .status {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .error {
+            background: rgba(255, 99, 71, 0.3);
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .success {
+            background: rgba(76, 175, 80, 0.3);
+            border-left: 4px solid #4caf50;
+        }
+        
+        .info {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        
+        button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 1rem;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px dotted white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 Base64 Auto-Downloader</h1>
+        
+        <div id="status" class="status">
+            <p>Processing your request...</p>
+        </div>
+        
+        <div id="details" class="info"></div>
+        
+        <button onclick="processBase64()" style="display: none;" id="retryBtn">
+            Try Again
+        </button>
+        
+        <p class="info">
+            <strong>How to use:</strong><br>
+            Add your base64 data to the URL parameter 'data'<br>
+            Example: page.html?data=SGVsbG8gV29ybGQ=<br>
+            <a href="?data=SGVsbG8gV29ybGQh" target="_blank">Try with sample data</a>
+        </p>
+    </div>
+
+    <script>
+        function getBase64FromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('data');
+        }
+
+        function detectMimeType(base64) {
+            try {
+                // Try to detect common file signatures
+                const firstChars = atob(base64).substring(0, 100);
+                
+                // Check for common file signatures
+                if (firstChars.startsWith('%PDF')) {
+                    return 'application/pdf';
+                } else if (firstChars.startsWith('PK')) {
+                    return 'application/zip';
+                } else if (firstChars.startsWith('GIF')) {
+                    return 'image/gif';
+                } else if (firstChars.startsWith('\x89PNG')) {
+                    return 'image/png';
+                } else if (firstChars.startsWith('\xFF\xD8')) {
+                    return 'image/jpeg';
+                } else if (firstChars.startsWith('BM')) {
+                    return 'image/bmp';
+                } else if (firstChars.match(/^[ -~]+$/)) {
+                    // If it's mostly printable ASCII, treat as text
+                    return 'text/plain';
+                }
+            } catch (e) {
+                // If detection fails, return null
+                return null;
+            }
+            return null;
+        }
+
+        function downloadBase64(base64Data) {
+            try {
+                // Clean the base64 string
+                base64Data = base64Data.replace(/\s/g, '');
+                
+                // Detect mime type
+                const detectedMime = detectMimeType(base64Data);
+                
+                // Determine if it's already a data URL
+                let dataUrl;
+                let fileExtension = 'bin';
+                let mimeType = 'application/octet-stream';
+                
+                if (base64Data.startsWith('data:')) {
+                    // If it's already a data URL, use it directly
+                    dataUrl = base64Data;
+                    
+                    // Extract mime type from data URL
+                    const matches = base64Data.match(/^data:([^;]+);/);
+                    if (matches) {
+                        mimeType = matches[1];
+                    }
+                } else {
+                    // If detected mime type, use it
+                    if (detectedMime) {
+                        mimeType = detectedMime;
+                    }
+                    
+                    // Create data URL
+                    dataUrl = `data:${mimeType};base64,${base64Data}`;
+                }
+                
+                // Determine file extension based on mime type
+                if (mimeType.includes('pdf')) fileExtension = 'pdf';
+                else if (mimeType.includes('zip')) fileExtension = 'zip';
+                else if (mimeType.includes('gif')) fileExtension = 'gif';
+                else if (mimeType.includes('png')) fileExtension = 'png';
+                else if (mimeType.includes('jpeg')) fileExtension = 'jpg';
+                else if (mimeType.includes('bmp')) fileExtension = 'bmp';
+                else if (mimeType.includes('text')) fileExtension = 'txt';
+                
+                // Generate filename with timestamp
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                const filename = `download_${timestamp}.${fileExtension}`;
+                
+                // Create download link
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = filename;
+                
+                // Trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Update status
+                updateStatus('success', `✅ Download started! File: ${filename}`);
+                
+                // Show details
+                document.getElementById('details').innerHTML = `
+                    <strong>File details:</strong><br>
+                    Type: ${mimeType}<br>
+                    Size: ~${Math.round(base64Data.length * 0.75)} bytes<br>
+                    Extension: .${fileExtension}
+                `;
+                
+                return true;
+            } catch (error) {
+                updateStatus('error', `❌ Error: ${error.message}`);
+                return false;
+            }
+        }
+
+        function updateStatus(type, message) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = `status ${type}`;
+            statusDiv.innerHTML = `<p>${message}</p>`;
+            
+            // Show retry button on error
+            const retryBtn = document.getElementById('retryBtn');
+            if (type === 'error') {
+                retryBtn.style.display = 'inline-block';
+            } else {
+                retryBtn.style.display = 'none';
+            }
+        }
+
+        function processBase64() {
+            const base64Data = getBase64FromUrl();
+            
+            if (!base64Data) {
+                updateStatus('error', '❌ No base64 data found in URL parameters. Please add ?data=your_base64_string');
+                document.getElementById('details').innerHTML = '';
+                return;
+            }
+            
+            // Validate base64
+            try {
+                atob(base64Data);
+                downloadBase64(base64Data);
+            } catch (e) {
+                updateStatus('error', '❌ Invalid base64 data provided');
+                document.getElementById('details').innerHTML = `
+                    <strong>Debug info:</strong><br>
+                    Data length: ${base64Data.length} characters<br>
+                    First 50 chars: ${base64Data.substring(0, 50)}...
+                `;
+            }
+        }
+
+        // Auto-start when page loads
+        window.onload = function() {
+            setTimeout(processBase64, 500); // Small delay to ensure page is loaded
+        };
+    </script>
+</body>
+</html>
