@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URemoveLink - Block Websites</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+        }
+        
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #27ae60;
+        }
+        
+        .status-indicator.disabled {
+            background: #e74c3c;
+        }
+        
+        .domains-list {
+            padding: 30px;
+        }
+        
+        .domain-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .domain-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .domain-name {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2c3e50;
+            word-break: break-all;
+        }
+        
+        .domain-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚫 URemoveLink</h1>
+            <p>Block websites by redirecting them to 127.0.0.1</p>
+        </div>
+        
+        <div class="controls">
+            <div class="status">
+                <span class="status-indicator" id="statusIndicator"></span>
+                <span id="statusText">Loading...</span>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn btn-warning" id="toggleOverridesBtn" onclick="toggleOverrides()">Enable / Disable</button>
+                <button class="btn btn-primary" onclick="openAddModal()">+ Block Website</button>
+            </div>
+        </div>
+        
+        <div class="domains-list" id="domainsList">
+            <div class="loading">Loading blocked websites...</div>
+        </div>
+    </div>
+    
+    <!-- Block Website Modal -->
+    <div class="modal" id="domainModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Block Website</h2>
+            </div>
+            <form id="domainForm" onsubmit="saveDomain(event)">
+                <div class="form-group">
+                    <label for="domainName">Website Domain</label>
+                    <input type="text" id="domainName" required placeholder="example.com or sub.example.com">
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" class="btn" onclick="closeModal()" style="background: #95a5a6; color: white;">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Block</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login Required</h2>
+            </div>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter password">
+                </div>
+                <div id="loginError" style="color: #e74c3c; margin-bottom: 15px; display: none;"></div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        let currentEditingDomain = null;
+        let overridesEnabled = false; // We'll track this from status
+        
+        // Load domains on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            checkAuthStatus();
+        });
+        
+        async function checkAuthStatus() {
+            try {
+                const response = await fetch('/api/auth-status');
+                const data = await response.json();
+                
+                if (data.requiresAuth && !data.authenticated) {
+                    document.getElementById('loginModal').classList.add('active');
+                } else {
+                    loadStatus();
+                    loadDomains();
+                }
+            } catch (error) {
+                console.error('Error checking auth status:', error);
+                loadStatus();
+                loadDomains();
+            }
+        }
+        
+        async function handleLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success' && result.authenticated) {
+                    document.getElementById('loginModal').classList.remove('active');
+                    document.getElementById('loginForm').reset();
+                    errorDiv.style.display = 'none';
+                    loadStatus();
+                    loadDomains();
+                } else {
+                    errorDiv.textContent = result.message || 'Invalid password';
+                    errorDiv.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error logging in:', error);
+                errorDiv.textContent = 'Error connecting to server';
+                errorDiv.style.display = 'block';
+            }
+        }
+        
+        async function loadStatus() {
+            try {
+                const response = await fetch('/api/status');
+                if (response.status === 401) {
+                    document.getElementById('loginModal').classList.add('active');
+                    return;
+                }
+                const data = await response.json();
+                overridesEnabled = data.overridesEnabled;
+                updateStatusUI();
+            } catch (error) {
+                console.error('Error loading status:', error);
+            }
+        }
+        
+        function updateStatusUI() {
+            const indicator = document.getElementById('statusIndicator');
+            const text = document.getElementById('statusText');
+            const toggleBtn = document.getElementById('toggleOverridesBtn');
+            
+            if (overridesEnabled) {
+                indicator.classList.remove('disabled');
+                text.textContent = 'Blocking Active';
+                toggleBtn.textContent = 'Disable Blocking';
+                toggleBtn.classList.remove('btn-success');
+                toggleBtn.classList.add('btn-warning');
+            } else {
+                indicator.classList.add('disabled');
+                text.textContent = 'Blocking Disabled';
+                toggleBtn.textContent = 'Enable Blocking';
+                toggleBtn.classList.remove('btn-warning');
+                toggleBtn.classList.add('btn-success');
+            }
+        }
+        
+        async function toggleOverrides() {
+            const endpoint = overridesEnabled ? '/disable-overrides' : '/enable-overrides';
+            try {
+                const response = await fetch(endpoint);
+                if (response.status === 401) {
+                    document.getElementById('loginModal').classList.add('active');
+                    return;
+                }
+                const result = await response.json();
+                if (result.status === 'success') {
+                    overridesEnabled = !overridesEnabled;
+                    updateStatusUI();
+                } else {
+                    alert('Failed to toggle blocking: ' + (result.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error toggling overrides:', error);
+                alert('Error toggling blocking');
+            }
+        }
+        
+        async function loadDomains() {
+            try {
+                const response = await fetch('/api/domains');
+                if (response.status === 401) {
+                    document.getElementById('loginModal').classList.add('active');
+                    return;
+                }
+                const data = await response.json();
+                // Filter domains that have an A record pointing to 127.0.0.1 (our "blocked" sites)
+                const blockedDomains = (data.domains || []).filter(domain => 
+                    domain.records.some(record => record.type === 'A' && record.data === '127.0.0.1')
+                );
+                displayBlockedDomains(blockedDomains);
+            } catch (error) {
+                console.error('Error loading domains:', error);
+                document.getElementById('domainsList').innerHTML = '<div class="empty-state">Error loading blocked websites</div>';
+            }
+        }
+        
+        function displayBlockedDomains(domains) {
+            const container = document.getElementById('domainsList');
+            
+            if (domains.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <h3>No websites are currently blocked</h3>
+                        <p>Click "Block Website" to add a domain to block</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = domains.map(domain => `
+                <div class="domain-card">
+                    <div class="domain-name">${escapeHtml(domain.domain)}</div>
+                    <div class="domain-actions">
+                        <button class="btn btn-sm btn-danger" onclick="unblockDomain('${escapeHtml(domain.domain)}')">Unblock</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function openAddModal() {
+            currentEditingDomain = null;
+            document.getElementById('modalTitle').textContent = 'Block Website';
+            document.getElementById('domainForm').reset();
+            document.getElementById('domainModal').classList.add('active');
+        }
+        
+        async function saveDomain(event) {
+            event.preventDefault();
+            
+            const domainName = document.getElementById('domainName').value;
+            
+            // Create a single A record pointing to 127.0.0.1
+            const records = [
+                {
+                    type: 'A',
+                    name: domainName,   // Use the full domain as the record name
+                    data: '127.0.0.1',
+                    ttl: 300
+                }
+            ];
+            
+            const domainData = {
+                domain: domainName,
+                records: records
+            };
+            
+            try {
+                let response;
+                if (currentEditingDomain) {
+                    response = await fetch(`/api/domains/${encodeURIComponent(currentEditingDomain)}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(domainData)
+                    });
+                } else {
+                    response = await fetch('/api/domains', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(domainData)
+                    });
+                }
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    closeModal();
+                    loadDomains();
+                } else {
+                    alert('Error: ' + (result.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error blocking website:', error);
+                alert('Error blocking website');
+            }
+        }
+        
+        async function unblockDomain(domain) {
+            if (!confirm(`Are you sure you want to unblock ${domain}?`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/domains/${encodeURIComponent(domain)}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    loadDomains();
+                } else {
+                    alert('Error: ' + (result.message || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Error unblocking domain:', error);
+                alert('Error unblocking domain');
+            }
+        }
+        
+        function closeModal() {
+            document.getElementById('domainModal').classList.remove('active');
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Close modal on outside click
+        document.getElementById('domainModal').addEventListener('click', (e) => {
+            if (e.target.id === 'domainModal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
