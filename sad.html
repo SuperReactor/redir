@@ -1,0 +1,186 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>pcejs-macplus</title>
+
+  <link rel="stylesheet" href="https://cpwebassets.codepen.io/assets/fullpage/fullpage-3f5d2eba435c38fad3be0c972eb70c6c30f714f251dc2d2c8e6968c30ce359f4.css">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+
+
+
+
+
+  <title>pcejs-macplus</title>
+
+  <style>
+    html { font-size: 15px; }
+    html, body { margin: 0; padding: 0; min-height: 100%; }
+    body { height:100%; display: flex; flex-direction: column; }
+    .referer-warning {
+      background: black;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      padding: 0.75em;
+      color: white;
+      text-align: center;
+      font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, system-ui, Sans-Serif;
+      line-height: 1.2;
+      font-size: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .referer-warning span { font-family: initial; }
+    .referer-warning h1 { font-size: 1.2rem; margin: 0; }
+    .referer-warning a { color: #56bcf9; }
+  </style>
+</head>
+
+<body class="">
+  <div class="referer-warning">
+    <h1><span>⚠️</span> Do not enter passwords or personal information on this page. <span>⚠️</span></h1>
+      This is a code demo posted by a web developer on <a href="https://codepen.io">CodePen</a>.
+    <br>
+    A referer from CodePen is required to render this page view, and your browser is not sending one (<a href="https://blog.codepen.io/2017/10/05/regarding-referer-headers/" target="_blank" rel="noreferrer noopener">more details</a>).
+  </div>
+
+  <div id="result-iframe-wrap" role="main">
+    <iframe id="result" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot; &gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  
+
+    &lt;link rel=&quot;apple-touch-icon&quot; type=&quot;image/png&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png&quot; /&gt;
+
+    &lt;meta name=&quot;apple-mobile-web-app-title&quot; content=&quot;CodePen&quot;&gt;
+
+    &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico&quot; /&gt;
+
+    &lt;link rel=&quot;mask-icon&quot; type=&quot;image/x-icon&quot; href=&quot;https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg&quot; color=&quot;#111&quot; /&gt;
+
+
+
+  
+  
+
+  &lt;title&gt;pcejs-macplus&lt;/title&gt;
+
+    &lt;link rel=&quot;canonical&quot; href=&quot;https://codepen.io/jsdf/pen/gOLryXM&quot;&gt;
+  
+  
+  
+  
+&lt;style&gt;
+* {
+  font-family: sans-serif;
+}
+p {
+  font-size: 14px;
+  margin: 8px 0;
+  color: #888;
+}
+.pcejs {
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+div.pcejs-border {
+  border: none;
+}
+/* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+.pcejs-canvas {
+  border: 0px none;
+}
+.pcejs-container {
+  margin-top: 32px;
+  text-align: center;
+}
+
+/* macplus has mouse integration, so we can hide the host mouse */
+.pcejs-container canvas {
+  cursor: none;
+}
+&lt;/style&gt;
+
+  &lt;script&gt;
+  window.console = window.console || function(t) {};
+&lt;/script&gt;
+
+  
+  
+&lt;/head&gt;
+
+&lt;body translate=&quot;no&quot;&gt;
+  &lt;div class=&quot;pcejs pcejs-container&quot;&gt;
+  &lt;div class=&quot;pcejs pcejs-loading-status&quot;&gt;Downloading...&lt;/div&gt;
+  &lt;div class=&quot;pcejs-border&quot;&gt;
+    &lt;canvas class=&quot;pcejs pcejs-canvas&quot; oncontextmenu=&quot;event.preventDefault()&quot;&gt;&lt;/canvas&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p class=&quot;pcejs&quot;&gt;press esc + &amp;uarr; to zoom in, esc + &amp;darr; to zoom out&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://unpkg.com/pcejs-macplus@0.2.2/pcejs-macplus.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://unpkg.com/pcejs-util@0.2.2/pcejs-util.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  // add a load progress bar. not required, but good ux
+  var loadingStatus = PCEJSUtil.loadingStatus(
+    document.querySelector('.pcejs-loading-status')
+  );
+  PCEJSMacplus({
+    arguments: ['-c', 'pce-config.cfg', '-r'],
+    autoloadFiles: [
+      'https://cors-proxy.shashankdolas6.workers.dev/?url=https://jamesfriend.com.au/pce-js/codepen/mac-plus.rom', // a macintosh rom file (you can use this one or any rom from an early macintosh eg. classic or earlier)
+      'https://cors-proxy.shashankdolas6.workers.dev/?url=https://jamesfriend.com.au/pce-js/codepen/hd1.qed', // a macintosh disk image (replace this file with your own)
+      'https://cors-proxy.shashankdolas6.workers.dev/?url=https://jamesfriend.com.au/pce-js/codepen/pce-config.cfg', // the PCE config file (edit and replace this file with your own)
+      'https://unpkg.com/pcejs-macplus@latest/macplus-pcex.rom', // the PCE extension rom, from the pcejs-macplus package
+    ],
+    locateFile(filename) {
+      // allows you to specify the absolute path to where the .wasm file is located (from the pcejs-macplus package)
+      return 'https://unpkg.com/pcejs-macplus@latest/' + filename;
+    },
+    print: console.log.bind(console),
+    printErr: console.warn.bind(console),
+    canvas: document.querySelector('.pcejs-canvas'),
+    monitorRunDependencies: function(remainingDependencies) {
+      loadingStatus.update(remainingDependencies);
+    },
+  });
+&lt;/script&gt;
+  
+  
+  
+&lt;/body&gt;
+
+&lt;/html&gt;
+" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="accelerometer *; bluetooth *; camera *; clipboard-read *; clipboard-write *; display-capture *; encrypted-media *; geolocation *; gyroscope *; language-detector *; language-model *; local-network-access *; microphone *; midi *; rewriter *; serial *; summarizer *; translator *; web-share *; writer *; xr-spatial-tracking *" allowtransparency="true" allowpaymentrequest="true" allowfullscreen="true" class="result-iframe" data-ruffle-polyfilled="">
+      </iframe>
+  </div>
+
+
+
+
+</body><chatgpt-sidebar data-rendered="true" data-gpts-theme="light"></chatgpt-sidebar></html>
